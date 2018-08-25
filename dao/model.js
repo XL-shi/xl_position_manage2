@@ -1,0 +1,9 @@
+// 可公用
+const mongoose = require("mongoose");
+mongoose.connect("mongodb://localhost/h51804");
+const User = mongoose.model("user",{
+    username:String,
+    password:String,
+    email: String
+});
+module.exports = {User};
