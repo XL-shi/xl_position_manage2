@@ -1,8 +1,14 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+table{
+  text-align: center;
 }
+table thead tr th {
+  text-align: center;
 
-a {
-  color: #00B7FF;
+}
+table tbody tr {
+  height: 77px;
+}
+table tbody tr td {
+  line-height: 77px !important;
+
 }

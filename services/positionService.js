@@ -13,6 +13,25 @@ const positionService = {
                     .catch(err=>{
                         res.json({res_code:-1, res_err:err, res_body:{}});
                     });
+    },
+    // 分页查询
+    listByPage(req, res, next){
+        let {page} = req.query;
+        page = page || 1;
+        positionDao.count()
+                    .then((countsData)=>{ //countsdata 数据总条数
+                        positionDao.findByPage(page)
+                                    .then((pageData)=>{ //pageData 每页的数据
+                                        const totalPages = Math.ceil(countsData / 5 );
+                                        res.json({res_code: 1, res_err: "", res_body: {data:pageData, count: countsData, totalPages}});
+                                    })
+                                    .catch(err=>{
+                                        res.json({res_code:-1, res_err: err, res_body:{}});
+                                    });
+                    })                  
+                    .catch(err=>{
+                        res.json({res_code:-1, res_err: err, res_body:{}});
+                    });
     }
 };
 module.exports = positionService;

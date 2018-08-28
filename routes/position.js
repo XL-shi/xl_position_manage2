@@ -16,4 +16,5 @@ const upload = multer({storage});
 // 添加职位
 router.post("/add",upload.single("logo"), positionService.add);
 
+router.get("/list", positionService.listByPage);
 module.exports = router;
