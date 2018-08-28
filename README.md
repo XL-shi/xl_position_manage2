@@ -24,3 +24,9 @@ session：`express-session`
 数据库连接：mongoose 连接 mongodb数据库
 	https://www.npmjs.com/package/mongoose
 	https://mongoosejs.com/
+
+
+dao文件夹
+    model.js中导出的{User}怎么是一个对象 和其他导出的区别
+    userDao.js 中引入的 {User} 是解构赋值的 model.js 中 的 User 吗
+    userDao.js 中 的user 为什么不能是大写的状态

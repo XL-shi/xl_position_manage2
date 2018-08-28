@@ -8,9 +8,41 @@
     <title>职位管理页面</title>
 </head>
 <body>
-    <div class="container header">
-    </div>
+    <div class="container header"></div>
+    <div class="container">
+        <h4 class=" pull-left">职位管理</h4>
+        <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#addPosModal">添加</button>
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>公司logo</th>
+                    <th>职位名称</th>
+                    <th>公司名称</th>
+                    <th>工作经验</th>
+                    <th>工作地点</th>
+                    <th>职位薪资</th>
+                    <th colspan="2">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>dd</td>
+                    <td>dd</td>
+                    <td>dd</td>
+                    <td>dd</td>
+                    <td>dd</td>
+                    <td>dd</td>
+                    <td><a href="#">修改</a></td>
+                    <td><a href="#"> 删除</a></td>
+                </tr>
+            </tbody>
+            <tfoot>
 
+            </tfoot>
+        </table>
+    </div>    
     <script src="/lib/jquery/jquery-1.12.4.min.js"></script>
     <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="/js/common/loginModal.js"></script>

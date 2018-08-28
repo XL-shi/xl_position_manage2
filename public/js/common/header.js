@@ -2,6 +2,7 @@ function Header(){
     this.createDom();
     this.loadLoginModal();
     this.loadRegisterModal();
+    this.loadHasLogin();
     this.addListener();
 }
 Header.template = `<nav class="navbar navbar-inverse navbar-default">
@@ -26,8 +27,8 @@ Header.template = `<nav class="navbar navbar-inverse navbar-default">
                                 <li class="link-register" data-toggle="modal" data-target="#registerModal"><a href="#">注册</a></li>                 
                             </ul>
                             <ul class="nav navbar-nav login-success navbar-right hide">
-                                <li><a href="#">hello, xiaoli</a></li>
-                                <li><a href="#">注销</a></li>                 
+                                <li><a href="#"></a></li>
+                                <li class="link-loginout"><a href="javascript:void(0)">注销</a></li>                 
                             </ul>
                             </div>
                         </div>
@@ -43,9 +44,22 @@ $.extend(Header.prototype, {
     loadRegisterModal(){
         new RegisterModal();
     },
+    loadHasLogin(){
+        let user = sessionStorage.loginUser;
+        if(user){
+            user = JSON.parse(user);
+            $(".login-success").removeClass("hide").find("a:first").text(`hello, ${user.username}`);
+            $(".not-login").remove();
+        }
+    },
     // 注册事件监听
     addListener(){
         $(".link-login, .link-register").on("click", this.genCaptchaHandler);
+        $(".link-loginout").on("click", this.loginoutHandler);
+    },
+    loginoutHandler(){
+        sessionStorage.removeItem("loginUser");
+        window.location = "/index.html";
     },
     genCaptchaHandler(){
         $.get("/captcha/gencode",(data)=>{

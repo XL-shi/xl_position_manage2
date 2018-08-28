@@ -3,9 +3,7 @@ var router = express.Router();
 const userService = require("../services/userService");
 
 // 用户登录
-router.post("/login", function(req, res, next) {
-  res.send("用户登录处理");
-});
+router.post("/login", userService.login);
 // 用户注册
 router.post("/register", userService.register);
 

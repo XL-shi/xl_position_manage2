@@ -10,6 +10,7 @@ LoginModal.template = `<div class="modal fade" id="loginModal" tabindex="-1" rol
                                     <h4 class="modal-title" id="loginModalLabel">用户登录</h4>
                                 </div>
                                 <div class="modal-body">
+                                    <div class="alert alert-danger login-err hide">用户名或密码错误</div>
                                     <form class="login-form">
                                         <div class="form-group">
                                             <label for="loginUsername">用户名</label>
@@ -57,10 +58,18 @@ $.extend(LoginModal.prototype, {
         var data = $(".login-form").serialize();
         $.post("/users/login", data, (resData)=>{
             console.log(resData);
-        }).done(()=>{
-            $("#loginModal").modal("hide");
-        }).done(()=>{
-            $(".login-success").removeClass("hide").siblings(".not-login").remove();
+            if(resData.res_code === 1){
+                const loginUsername = $("#loginUsername").val();
+                $("#loginModal").modal("hide");
+                $(".login-success").removeClass("hide").find("a:first").text("hello, " + loginUsername);
+                $(".not-login").remove();
+                // 将登录成功的用户信息保存到 sessionStorage中
+                // sessionStorage.setItem("loginUser", JSON.stringify(resData.res_body));
+				sessionStorage.loginUser = JSON.stringify(resData.res_body);
+
+            }else {
+                $(".login-err").removeClass("hide");
+            }
         });
     }
 });
