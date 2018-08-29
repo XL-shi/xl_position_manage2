@@ -58,8 +58,12 @@ $.extend(Header.prototype, {
         $(".link-loginout").on("click", this.loginoutHandler);
     },
     loginoutHandler(){
-        sessionStorage.removeItem("loginUser");
-        window.location = "/index.html";
+        $.getJSON("/users/loginout", (data)=>{
+            if(data.res_body.status){
+                sessionStorage.removeItem("loginUser");
+                window.location = "/index.html";
+            }
+        })
     },
     genCaptchaHandler(){
         $.get("/captcha/gencode",(data)=>{
